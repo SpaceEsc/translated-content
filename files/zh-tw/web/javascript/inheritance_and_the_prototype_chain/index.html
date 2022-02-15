@@ -281,7 +281,7 @@ b.doSomething();
 
 <p>JavaScript 對那些從 Java 或 C++ 學過來的人來說，可能會有點困惑，因為它動態、永遠是執行狀態（all runtime）、還完全沒有 class。一切都只是實例（物件）。即使是「class」關鍵字，也只是函式物件。</p>
 
-<p>你可能早就發現我們的 <code>function A</code> 有個名為 <code>prototype</code> 的特殊屬性。這個特殊屬性會透過 <code>new</code> 運算子運行之。原型物件的參照，會把新實例的 <code>[[Prototype]]</code> 屬性複製到該物件內部。比方說在你 <code>var a1 = new A()</code> 時，JavaScript 在記憶體裡面建立物件後、還有運行已經定義好 <code>this</code> 的函式 <code>A()</code> 前，會設定 <code>a1.[[Prototype]] = A.prototype</code>。在接著訪問實例的屬性前，JavaScript 首先會直接檢查物件的實例屬性是否存在。如果沒有，就檢查 <code>[[Prototype]]</code>。也就是說，在 <code>prototype</code> 定義的東西，能夠有效地共享給各實，甚至，如果想的話，還可以改變並顯現於現有實例中。</p>
+<p>你可能早就發現我們的 <code>function A</code> 有個名為 <code>prototype</code> 的特殊屬性。這個特殊屬性會透過 <code>new</code> 運算子運行之。原型物件的參照，會把新實例的 <code>[[Prototype]]</code> 屬性複製到該物件內部。比方說在你 <code>var a1 = new A()</code> 時，JavaScript 在記憶體裡面建立物件後、還有運行已經定義好 <code>this</code> 的函式 <code>A()</code> 前，會設定 <code>a1.[[Prototype]] = A.prototype</code>。在接著訪問實例的屬性前，JavaScript 首先會直接檢查物件的實例屬性是否存在。如果沒有，就檢查 <code>[[Prototype]]</code>。也就是說，在 <code>prototype</code> 定義的東西，能夠有效地共享給各實例，甚至，如果想的話，還可以改變並顯現於現有實例中。</p>
 
 <p>如上例所示，首先 <code>var a1 = new A(); var a2 = new A();</code> 接著 <code>a1.doSomething</code> 的話，會參照到 <code>Object.getPrototypeOf(a1).doSomething</code>，他會與早就定義好的 <code>A.prototype.doSomething</code> 相同，例如： <code>Object.getPrototypeOf(a1).doSomething == Object.getPrototypeOf(a2).doSomething == A.prototype.doSomething</code>.</p>
 
